@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraFlowOS - Showcase</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cyan: #00D4FF;
+            --blue: #0066FF;
+            --purple: #7C3AED;
+            --dark: #0F172A;
+            --light: #F8FAFC;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a2a4a 100%);
+            color: var(--light);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--cyan);
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo h1 {
+            font-size: 2em;
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .access-level {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            background: rgba(0, 212, 255, 0.2);
+            border: 1px solid var(--cyan);
+        }
+
+        .access-level.private {
+            background: rgba(124, 58, 237, 0.2);
+            border: 1px solid var(--purple);
+            color: var(--purple);
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .navbar a:hover {
+            color: var(--cyan);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            border-radius: 10px;
+            margin-bottom: 60px;
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: var(--white);
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: var(--light);
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 60px;
+            padding: 40px;
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid rgba(0, 212, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .section h3 {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: var(--cyan);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            padding: 30px;
+            background: rgba(0, 212, 255, 0.05);
+            border: 2px solid var(--cyan);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            background: rgba(0, 212, 255, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .feature-card h4 {
+            color: var(--cyan);
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .feature-card p {
+            color: var(--light);
+            line-height: 1.8;
+        }
+
+        /* Operations Grid */
+        .operations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .operation-card {
+            padding: 25px;
+            background: rgba(124, 58, 237, 0.1);
+            border: 2px solid var(--purple);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .operation-card:hover {
+            background: rgba(124, 58, 237, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .operation-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        .operation-card h4 {
+            color: var(--purple);
+            margin-bottom: 10px;
+        }
+
+        /* Use Case Cards */
+        .usecase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .usecase-card {
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1));
+            border: 1px solid var(--blue);
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .usecase-card:hover {
+            background: linear-gradient(135deg, rgba(0, 212, 255, 0.25), rgba(124, 58, 237, 0.25));
+            transform: scale(1.05);
+        }
+
+        .usecase-card h4 {
+            color: var(--blue);
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+
+        .usecase-card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .usecase-card li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .usecase-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--cyan);
+            font-weight: bold;
+        }
+
+        /* Private Section */
+        .private-section {
+            border: 2px solid var(--purple);
+            background: rgba(124, 58, 237, 0.05);
+        }
+
+        .private-section h3 {
+            color: var(--purple);
+        }
+
+        .warning-box {
+            padding: 20px;
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            color: #ffc107;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Details/Summary */
+        details {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid var(--purple);
+            border-radius: 5px;
+        }
+
+        summary {
+            cursor: pointer;
+            color: var(--cyan);
+            font-weight: bold;
+            transition: color 0.3s;
+            user-select: none;
+        }
+
+        summary:hover {
+            color: var(--purple);
+        }
+
+        pre {
+            background: #0f172a;
+            border: 1px solid var(--cyan);
+            border-radius: 5px;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-size: 0.85em;
+        }
+
+        code {
+            color: var(--cyan);
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--cyan);
+            margin-top: 60px;
+            color: var(--light);
+        }
+
+        .footer a {
+            color: var(--cyan);
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        .footer a:hover {
+            color: var(--purple);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero h2 {
+                font-size: 1.8em;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
+
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>🚀 AuraFlowOS</h1>
+                <span class="access-level" id="accessLevel">PUBLIC</span>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#operations">What You Can Do</a></li>
+                    <li><a href="#usecases">Use Cases</a></li>
+                    <li id="technicalNav" style="display:none;">
+                        <a href="#technical">🔐 Technical Details</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h2>Next-Generation Operating System</h2>
+            <p><span id="accessText">Explore what you can do</span> with AuraFlowOS</p>
+        </section>
+
+        <!-- What is AuraFlowOS Section -->
+        <section id="whatitis" class="section">
+            <h3>💡 What is AuraFlowOS?</h3>
+            <p style="font-size: 1.1em; margin-bottom: 20px;">
+                AuraFlowOS is a <strong>powerful, lightweight operating system</strong> designed for performance, 
+                flexibility, and control. Whether you're a developer, system administrator, or power user, 
+                AuraFlowOS gives you the tools and freedom you need.
+            </p>
+            <p style="color: var(--light);">
+                From embedded systems to full desktop environments, from offline demo mode to remote management - 
+                AuraFlowOS adapts to your needs.
+            </p>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="section">
+            <h3>✨ Key Features</h3>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h4>⚡ High Performance</h4>
+                    <p>Optimized for speed with minimal resource overhead. Runs smooth on basic hardware.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🎨 Multiple Desktop Environments</h4>
+                    <p>Choose from Sway, KDE, LXQt, XFCE, Openbox and more. Pick what works for you.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📱 Remote Control</h4>
+                    <p>Control your system remotely using our dedicated Android app or web interface.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔒 Secure by Default</h4>
+                    <p>Modern security practices built-in. Keep your system and data safe.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🌐 Network Ready</h4>
+                    <p>Full networking capabilities with advanced remote access and collaboration tools.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>💾 Lightweight & Fast</h4>
+                    <p>Minimal ISO size, quick boot time, efficient memory usage on any hardware.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔧 Highly Customizable</h4>
+                    <p>Tailor every aspect to your needs. No bloatware, only what you want.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📡 Works Offline</h4>
+                    <p>Full featured demo mode that works without internet connection.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What You Can Do Section -->
+        <section id="operations" class="section">
+            <h3>🎯 What You Can Do</h3>
+            <div class="operations-grid">
+                <div class="operation-card">
+                    <div class="operation-icon">🖥️</div>
+                    <h4>Desktop Computing</h4>
+                    <p>Full desktop experience with windowed applications, file management, and productivity tools</p>
+                </div>
+                <div class="operation-card">
+                    <div class="operation-icon">💻</div>
+                    <h4>Development</h4>
+                    <p>Complete development environment with compilers, package managers, and dev tools</p>
+                </div>
+                <div class="operation-card">
+                    <div class="operation-icon">🔧</div>
+                    <h4>System Administration</h4>
+                    <p>Advanced system management, user administration, and security controls</p>
+                </div>
+                <div class="operation-card">
+                    <div class="operation-icon">🌍</div>
+                    <h4>Networking & Servers</h4>
+                    <p>Network configuration, server hosting, and advanced connectivity options</p>
+                </div>
+                <div class="operation-card">
+                    <div class="operation-icon">📊</div>
+                    <h4>Data Processing</h4>
+                    <p>Handle databases, analytics tools, and data manipulation applications</p>
+                </div>
+                <div class="operation-card">
+                    <div class="operation-icon">🚀</div>
+                    <h4>Automation & Scripting</h4>
+                    <p>Write scripts, automate tasks, and create powerful automation workflows</p>
+                </div>
+                <div class="operation-card">
+                    <div class="operation-icon">📱</div>
+                    <h4>Mobile Integration</h4>
+                    <p>Control and manage mobile devices from your AuraFlowOS system</p>
+                </div>
+                <div class="operation-card">
+                    <div class="operation-icon">🎮</div>
+                    <h4>Multimedia & Gaming</h4>
+                    <p>Run multimedia applications, games, and entertainment software</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases Section -->
+        <section id="usecases" class="section">
+            <h3>🎯 Perfect For:</h3>
+            <div class="usecase-grid">
+                <div class="usecase-card">
+                    <h4>💼 Enterprise & Business</h4>
+                    <ul>
+                        <li>Cost-effective deployment on standard hardware</li>
+                        <li>Centralized remote management and monitoring</li>
+                        <li>Multi-tier licensing for scale</li>
+                        <li>Production-ready reliability</li>
+                    </ul>
+                </div>
+
+                <div class="usecase-card">
+                    <h4>👨‍💻 Developers & Engineers</h4>
+                    <ul>
+                        <li>Complete development environment</li>
+                        <li>Full customization capabilities</li>
+                        <li>Advanced debugging and profiling tools</li>
+                        <li>Integration with modern dev workflows</li>
+                    </ul>
+                </div>
+
+                <div class="usecase-card">
+                    <h4>🏢 System Administrators</h4>
+                    <ul>
+                        <li>Remote access and management</li>
+                        <li>Multi-system deployment</li>
+                        <li>Advanced configuration options</li>
+                        <li>Centralized administration tools</li>
+                    </ul>
+                </div>
+
+                <div class="usecase-card">
+                    <h4>🎓 Education & Learning</h4>
+                    <ul>
+                        <li>Open source for learning</li>
+                        <li>Lab environment setup</li>
+                        <li>Teaching modern OS concepts</li>
+                        <li>Practical hands-on experience</li>
+                    </ul>
+                </div>
+
+                <div class="usecase-card">
+                    <h4>🌐 Server & Cloud</h4>
+                    <ul>
+                        <li>Lightweight server deployments</li>
+                        <li>Cloud infrastructure optimization</li>
+                        <li>Container and virtualization support</li>
+                        <li>Minimal resource requirements</li>
+                    </ul>
+                </div>
+
+                <div class="usecase-card">
+                    <h4>🛠️ IoT & Embedded Systems</h4>
+                    <ul>
+                        <li>Minimal hardware requirements</li>
+                        <li>Fast boot and response times</li>
+                        <li>Remote management capabilities</li>
+                        <li>Long-term stability and reliability</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Details Section (Private Only) -->
+        <section id="technical" class="section private-section" style="display:none;">
+            <div class="warning-box">
+                🔐 PRIVATE INFORMATION - This section is only visible via secure access
+            </div>
+            <h3>🏗️ Technical Architecture & Implementation Details</h3>
+            <p style="margin-bottom: 20px;">
+                Full technical specifications, build procedures, frameworks, and implementation details are available 
+                in the private documentation portal. This includes:
+            </p>
+            <div class="operations-grid">
+                <div class="operation-card">
+                    <h4>📋 Architecture Stack</h4>
+                    <p>Complete system architecture from hardware layer to application layer</p>
+                </div>
+                <div class="operation-card">
+                    <h4>⚙️ Build System</h4>
+                    <p>7-stage build pipeline with detailed procedures and configurations</p>
+                </div>
+                <div class="operation-card">
+                    <h4>🔧 Frameworks & Tools</h4>
+                    <p>All technologies, versions, and integration details</p>
+                </div>
+                <div class="operation-card">
+                    <h4>🔑 Configuration</h4>
+                    <p>Kernel configs, bootloader settings, and system parameters</p>
+                </div>
+                <div class="operation-card">
+                    <h4>🚀 Deployment</h4>
+                    <p>Deployment procedures and infrastructure details</p>
+                </div>
+                <div class="operation-card">
+                    <h4>📱 APIs & Services</h4>
+                    <p>External endpoints, licensing system, and remote services</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>
+                <span id="footerText">🌐 AuraFlowOS - Next-Generation Operating System</span>
+            </p>
+            <p style="margin-top: 15px;">
+                <span id="moreInfo">Want to learn more about how it works?</span>
+                <span id="privateLink" style="display:none;">
+                    | <a onclick="showAccessInfo()">🔐 Access Technical Details</a>
+                </span>
+            </p>
+            <p style="margin-top: 20px; font-size: 0.9em; color: var(--light);">
+                Access Level: <span id="accessMode">PUBLIC</span>
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Environment Detection
+        class EnvironmentDetector {
+            constructor() {
+                this.hostname = window.location.hostname;
+                this.environment = this.detectEnvironment();
+                this.isPrivate = this.checkPrivateAccess();
+            }
+
+            detectEnvironment() {
+                if (this.hostname.includes('tail') || this.hostname.includes('.ts.net')) {
+                    return 'TAILSCALE';
+                } else if (this.hostname.includes('github.io')) {
+                    return 'GITHUB_PAGES';
+                } else if (this.hostname === 'localhost' || this.hostname === '127.0.0.1') {
+                    return 'LOCAL';
+                }
+                return 'OTHER';
+            }
+
+            checkPrivateAccess() {
+                if (this.hostname.includes('.ts.net')) {
+                    return true;
+                }
+                if (localStorage.getItem('tailscale_token')) {
+                    return true;
+                }
+                if (this.hostname.includes('private') || this.hostname.includes('internal')) {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        // Initialize environment
+        const ENV = new EnvironmentDetector();
+
+        // Apply styling and visibility
+        function applyEnvironment() {
+            const accessLevel = document.getElementById('accessLevel');
+            const footerText = document.getElementById('footerText');
+            const accessText = document.getElementById('accessText');
+            const accessMode = document.getElementById('accessMode');
+            const technicalNav = document.getElementById('technicalNav');
+            const technicalSection = document.getElementById('technical');
+            const privateLink = document.getElementById('privateLink');
+            const moreInfo = document.getElementById('moreInfo');
+
+            if (ENV.isPrivate) {
+                accessLevel.textContent = 'PRIVATE';
+                accessLevel.classList.add('private');
+                footerText.textContent = '🔐 AuraFlowOS - Complete Technical Details Available';
+                accessText.textContent = 'Access complete technical details';
+                accessMode.textContent = 'PRIVATE (Secure Access)';
+
+                if (technicalNav) technicalNav.style.display = 'block';
+                if (technicalSection) technicalSection.style.display = 'block';
+                if (moreInfo) moreInfo.textContent = 'Full technical documentation available:';
+                if (privateLink) privateLink.style.display = 'inline';
+
+            } else {
+                accessLevel.textContent = 'PUBLIC';
+                footerText.textContent = '🌐 AuraFlowOS - Next-Generation Operating System';
+                accessText.textContent = 'Explore the possibilities';
+                accessMode.textContent = 'PUBLIC';
+
+                if (technicalNav) technicalNav.style.display = 'none';
+                if (technicalSection) technicalSection.style.display = 'none';
+                if (moreInfo) moreInfo.textContent = 'Interested in technical implementation?';
+                if (privateLink) privateLink.style.display = 'none';
+            }
+
+            document.title = ENV.isPrivate ? 
+                'AuraFlowOS - Technical Details (Private)' : 
+                'AuraFlowOS - Features & Operations';
+
+            console.log(`Environment: ${ENV.environment}`);
+            console.log(`Private Access: ${ENV.isPrivate}`);
+        }
+
+        function showAccessInfo() {
+            alert(`
+🔐 Technical Documentation Access
+
+Current Environment: ${ENV.environment}
+Access Level: ${ENV.isPrivate ? 'PRIVATE ✅' : 'PUBLIC'}
+
+To access TECHNICAL DETAILS:
+1. Connect to secure VPN access
+2. You will see:
+   - Complete OS Architecture
+   - Build Procedures & Configurations
+   - Framework Details
+   - Deployment Information
+   - API Endpoints & Services
+
+Currently viewing: ${ENV.isPrivate ? 'TECHNICAL SECTION VISIBLE' : 'PUBLIC FEATURES ONLY'}
+            `);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            applyEnvironment();
+
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

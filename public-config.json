@@ -1,0 +1,23 @@
+{
+  "environment": "PUBLIC",
+  "visibility": "public",
+  "showPrivate": false,
+  "features": {
+    "architecture": true,
+    "features": true,
+    "frameworks": true,
+    "privateSecrets": false,
+    "buildDetails": false,
+    "credentials": false
+  },
+  "links": {
+    "github": "https://github.com/auraflowosnova/auraflow-showcase",
+    "github_private": null,
+    "tailscale": null,
+    "documentation": "https://github.com/yourusername/auraflow-showcase/wiki"
+  },
+  "branding": {
+    "title": "AuraFlowOS - Public Showcase",
+    "description": "Custom Linux OS for x86_64"
+  }
+}
